@@ -1,0 +1,267 @@
+.logo-showcase {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%);
+  padding: 2rem;
+  color: #fff;
+}
+
+.showcase-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.showcase-header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.showcase-header p {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.logo-grid h2 {
+  font-family: 'Cinzel', serif;
+  color: #ffd700;
+  font-size: 2rem;
+  margin: 3rem 0 1.5rem 0;
+  text-align: center;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.logo-option {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 215, 0, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+}
+
+.logo-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.preview-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+}
+
+/* Golden Rabbit Style Variations */
+.golden-style-1 {
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+  animation: goldenPulse1 2s ease-in-out infinite;
+}
+
+.golden-style-2 {
+  background: linear-gradient(90deg, #b8860b, #ffd700, #daa520);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.7));
+}
+
+.golden-style-3 {
+  background: linear-gradient(45deg, #ffff00, #ffd700, #ff8c00);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1));
+  animation: goldenShine 1.5s ease-in-out infinite;
+}
+
+.golden-style-4 {
+  background: linear-gradient(135deg, #daa520, #ffd700, #ff8c42);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 8px rgba(218, 165, 32, 0.8));
+}
+
+.golden-style-5 {
+  background: linear-gradient(45deg, #b8860b, #ffd700, #ffed4e, #b8860b);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9))
+          drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+  animation: royalGlow 3s ease-in-out infinite;
+}
+
+.golden-style-6 {
+  background: linear-gradient(60deg, #ff6b35, #ffd700, #ff8c42);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 8px rgba(255, 140, 66, 0.8));
+}
+
+.golden-style-7 {
+  background: linear-gradient(45deg, #ffd700, #ffff80, #ffd700, #ffed4e);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
+  animation: shimmer 1s ease-in-out infinite;
+}
+
+.golden-style-8 {
+  background: linear-gradient(45deg, #8b6914, #daa520, #ffd700);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 6px rgba(218, 165, 32, 0.9));
+}
+
+@keyframes goldenPulse1 {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
+  }
+}
+
+@keyframes goldenShine {
+  0%, 100% { 
+    background-position: 0% 50%;
+  }
+  50% { 
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes royalGlow {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9))
+            drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1))
+            drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 25px rgba(255, 255, 128, 1));
+  }
+}
+
+.preview-custom {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.preview-text {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #ffd700;
+}
+
+.svg-logo {
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+}
+
+.option-info h3 {
+  color: #ffd700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Cinzel', serif;
+}
+
+.option-info p {
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.logo-option.custom {
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+.logo-option.custom:hover {
+  border-color: rgba(255, 107, 53, 0.6);
+  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+}
+
+.logo-option.svg {
+  border-color: rgba(0, 255, 127, 0.3);
+}
+
+.logo-option.svg:hover {
+  border-color: rgba(0, 255, 127, 0.6);
+  box-shadow: 0 10px 25px rgba(0, 255, 127, 0.2);
+}
+
+.selection-note {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 8px;
+}
+
+.selection-note p {
+  color: #ffd700;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .showcase-header h1 {
+    font-size: 2rem;
+  }
+  
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .logo-showcase {
+    padding: 1rem;
+  }
+}

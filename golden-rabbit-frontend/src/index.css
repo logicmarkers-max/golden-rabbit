@@ -1,0 +1,696 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg-deep: #0b0d1f;
+  --color-bg-mid: #1a1d3a;
+  --color-accent-gold: #ffd700;
+  --color-accent-orange: #ff6b35;
+  --color-text-muted: rgba(255, 255, 255, 0.65);
+  --radius-card: 16px;
+  --shadow-card: 0 14px 28px rgba(0, 0, 0, 0.35);
+  --max-content: 1400px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #fff;
+  background:
+    linear-gradient(180deg,
+      #0b0d1f 0%,
+      #141832 25%,
+      #1a2554 50%,
+      #141832 75%,
+      #0b0d1f 100%
+    ),
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255, 215, 0, 0.08), transparent),
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255, 215, 0, 0.25), transparent),
+    radial-gradient(1px 1px at 80% 20%, rgba(255, 255, 255, 0.15), transparent),
+    radial-gradient(1px 1px at 60% 70%, rgba(255, 140, 0, 0.2), transparent);
+  background-size: 100% 100%, 100% 100%, 240px 240px, 200px 200px, 220px 220px;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+
+
+@keyframes backgroundGlow {
+  0%, 100% { 
+    opacity: 0.6;
+  }
+  33% { 
+    opacity: 1;
+  }
+  66% { 
+    opacity: 0.8;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #ffd700, #ff6b35);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ffed4e, #ff8c42);
+}
+
+/* Realistic Sky Shot Fireworks */
+.fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.skyshot-group {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.skyshot-group-1 {
+  left: 12%;
+  animation-delay: 0s;
+}
+
+.skyshot-group-2 {
+  left: 67%;
+  animation-delay: 4.2s;
+}
+
+.skyshot-group-3 {
+  left: 34%;
+  animation-delay: 8.7s;
+}
+
+.skyshot-group-4 {
+  left: 81%;
+  animation-delay: 2.1s;
+}
+
+.skyshot-group-5 {
+  left: 23%;
+  animation-delay: 6.8s;
+}
+
+/* Add random variations for burst patterns */
+.skyshot-group:nth-child(odd) .explosion-primary {
+  transform: rotate(15deg);
+}
+
+.skyshot-group:nth-child(even) .explosion-primary {
+  transform: rotate(-20deg);
+}
+
+.skyshot-group:nth-child(3n) .explosion-secondary {
+  transform: rotate(45deg) scale(1.2);
+}
+
+.skyshot-group:nth-child(5n) .explosion-secondary {
+  transform: rotate(-30deg) scale(0.8);
+}
+
+.skyshot-rocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #fff 0%, #ffd700 50%, #ff6b35 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ffd700;
+  animation: rocketLaunch 12s ease-out infinite;
+}
+
+.explosion-primary {
+  position: absolute;
+  bottom: var(--burst-height, 65vh);
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  animation: explosionTiming 15s ease-out infinite;
+}
+
+.explosion-secondary {
+  position: absolute;
+  bottom: var(--burst-height, 65vh);
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  animation: secondaryExplosionTiming 15s ease-out infinite;
+}
+
+.explosion-tertiary {
+  position: absolute;
+  bottom: var(--burst-height, 65vh);
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  animation: tertiaryExplosionTiming 15s ease-out infinite;
+}
+
+.enhanced-spark {
+  box-shadow: 0 0 12px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  filter: brightness(1.2) saturate(1.3);
+}
+
+.enhanced-mini-spark {
+  box-shadow: 0 0 8px currentColor, 0 0 15px currentColor;
+  filter: brightness(1.1) saturate(1.2);
+}
+
+.secondary-burst {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff 0%, #ffd700 50%, transparent 100%);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.mini-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #fff 0%, #ff6b35 50%, transparent 100%);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Color-specific styles */
+.color-gold .spark {
+  background: radial-gradient(circle, #fff 0%, #ffd700 50%, transparent 100%);
+}
+.color-gold .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #ffed4e 50%, transparent 100%);
+}
+
+.color-red .spark {
+  background: radial-gradient(circle, #fff 0%, #ff4444 50%, transparent 100%);
+}
+.color-red .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #ff6666 50%, transparent 100%);
+}
+
+.color-green .spark {
+  background: radial-gradient(circle, #fff 0%, #00ff88 50%, transparent 100%);
+}
+.color-green .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #44ffaa 50%, transparent 100%);
+}
+
+.color-blue .spark {
+  background: radial-gradient(circle, #fff 0%, #4488ff 50%, transparent 100%);
+}
+.color-blue .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #66aaff 50%, transparent 100%);
+}
+
+.color-purple .spark {
+  background: radial-gradient(circle, #fff 0%, #aa44ff 50%, transparent 100%);
+}
+.color-purple .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #cc66ff 50%, transparent 100%);
+}
+
+.color-orange .spark {
+  background: radial-gradient(circle, #fff 0%, #ff8844 50%, transparent 100%);
+}
+.color-orange .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #ffaa66 50%, transparent 100%);
+}
+
+.color-pink .spark {
+  background: radial-gradient(circle, #fff 0%, #ff44aa 50%, transparent 100%);
+}
+.color-pink .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #ff66cc 50%, transparent 100%);
+}
+
+.color-cyan .spark {
+  background: radial-gradient(circle, #fff 0%, #44aaff 50%, transparent 100%);
+}
+.color-cyan .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #66ccff 50%, transparent 100%);
+}
+
+.spark-1 { animation: sparkBurst1 12s ease-out infinite; }
+.spark-2 { animation: sparkBurst2 12s ease-out infinite; }
+.spark-3 { animation: sparkBurst3 12s ease-out infinite; }
+.spark-4 { animation: sparkBurst4 12s ease-out infinite; }
+.spark-5 { animation: sparkBurst5 12s ease-out infinite; }
+.spark-6 { animation: sparkBurst6 12s ease-out infinite; }
+.spark-7 { animation: sparkBurst7 12s ease-out infinite; }
+.spark-8 { animation: sparkBurst8 12s ease-out infinite; }
+
+.mini-1 { animation: miniSparkBurst1 12s ease-out infinite; }
+.mini-2 { animation: miniSparkBurst2 12s ease-out infinite; }
+.mini-3 { animation: miniSparkBurst3 12s ease-out infinite; }
+.mini-4 { animation: miniSparkBurst4 12s ease-out infinite; }
+.mini-5 { animation: miniSparkBurst5 12s ease-out infinite; }
+.mini-6 { animation: miniSparkBurst6 12s ease-out infinite; }
+.mini-7 { animation: miniSparkBurst7 12s ease-out infinite; }
+.mini-8 { animation: miniSparkBurst8 12s ease-out infinite; }
+
+.sparkBurstRandom1 { animation: sparkBurstRandom1 12s ease-out infinite; }
+.sparkBurstRandom2 { animation: sparkBurstRandom2 12s ease-out infinite; }
+.miniSparkRandom1 { animation: miniSparkRandom1 12s ease-out infinite; }
+.miniSparkRandom2 { animation: miniSparkRandom2 12s ease-out infinite; }
+
+@keyframes rocketLaunch {
+  0% {
+    bottom: 0;
+    opacity: 1;
+    box-shadow: 0 0 10px #ffd700, 0 20px 10px #ffd700;
+  }
+  45% {
+    bottom: 65vh;
+    opacity: 1;
+    box-shadow: 0 0 15px #ffd700, 0 30px 15px #ffd700;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    bottom: 65vh;
+    opacity: 0;
+  }
+}
+
+@keyframes explosionTiming {
+  0%, 30% { opacity: 0; }
+  35% { opacity: 1; }
+  60% { opacity: 1; }
+  70% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes secondaryExplosionTiming {
+  0%, 50% { opacity: 0; }
+  55% { opacity: 1; }
+  80% { opacity: 1; }
+  90% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes tertiaryExplosionTiming {
+  0%, 70% { opacity: 0; }
+  75% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurst1 {
+  0%, 30% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  35% { transform: translate(0, 0) scale(1.2); opacity: 1; background: radial-gradient(circle, #fff 0%, #ffd700 100%); }
+  55% { transform: translate(-45px, -85px) scale(1); opacity: 1; }
+  70% { transform: translate(-75px, -125px) scale(0.3); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurst2 {
+  0%, 30% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  35% { transform: translate(0, 0) scale(1.5); opacity: 1; background: radial-gradient(circle, #fff 0%, #ff6b35 100%); }
+  55% { transform: translate(82px, -48px) scale(1); opacity: 1; }
+  70% { transform: translate(125px, -82px) scale(0.3); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurst3 {
+  0%, 45% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  50% { transform: translate(0, 0) scale(1.3); opacity: 1; background: radial-gradient(circle, #fff 0%, #ffd700 100%); }
+  70% { transform: translate(68px, 32px) scale(1); opacity: 1; }
+  85% { transform: translate(108px, 52px) scale(0.3); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurst4 {
+  0%, 45% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  50% { transform: translate(0, 0) scale(1.4); opacity: 1; background: radial-gradient(circle, #fff 0%, #ff6b35 100%); }
+  70% { transform: translate(42px, 75px) scale(1); opacity: 1; }
+  85% { transform: translate(65px, 115px) scale(0.3); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurst5 {
+  0%, 45% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  50% { transform: translate(0, 0) scale(1.6); opacity: 1; background: radial-gradient(circle, #fff 0%, #ffd700 100%); }
+  70% { transform: translate(-18px, 85px) scale(1); opacity: 1; }
+  85% { transform: translate(-28px, 125px) scale(0.3); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurst6 {
+  0%, 45% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  50% { transform: translate(0, 0) scale(1.1); opacity: 1; background: radial-gradient(circle, #fff 0%, #ff6b35 100%); }
+  70% { transform: translate(-75px, 38px) scale(1); opacity: 1; }
+  85% { transform: translate(-115px, 58px) scale(0.3); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurst7 {
+  0%, 45% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  50% { transform: translate(0, 0) scale(1.7); opacity: 1; background: radial-gradient(circle, #fff 0%, #ffd700 100%); }
+  70% { transform: translate(-85px, -25px) scale(1); opacity: 1; }
+  85% { transform: translate(-125px, -38px) scale(0.3); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurst8 {
+  0%, 45% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  50% { transform: translate(0, 0) scale(1.3); opacity: 1; background: radial-gradient(circle, #fff 0%, #ff6b35 100%); }
+  70% { transform: translate(-25px, -78px) scale(1); opacity: 1; }
+  85% { transform: translate(-38px, -115px) scale(0.3); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes miniSparkBurst1 {
+  0%, 50% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  55% { transform: translate(0, 0) scale(1); opacity: 1; }
+  75% { transform: translate(-35px, -25px) scale(1.2); opacity: 1; }
+  90% { transform: translate(-55px, -42px) scale(0.2); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes miniSparkBurst2 {
+  0%, 50% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  55% { transform: translate(0, 0) scale(1.1); opacity: 1; }
+  75% { transform: translate(32px, -28px) scale(1.3); opacity: 1; }
+  90% { transform: translate(52px, -45px) scale(0.2); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes miniSparkBurst3 {
+  0%, 65% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  70% { transform: translate(0, 0) scale(0.9); opacity: 1; }
+  85% { transform: translate(28px, 35px) scale(1.1); opacity: 1; }
+  100% { transform: translate(45px, 55px) scale(0.2); opacity: 0; }
+}
+
+@keyframes miniSparkBurst4 {
+  0%, 65% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  70% { transform: translate(0, 0) scale(1.2); opacity: 1; }
+  85% { transform: translate(-28px, 32px) scale(1.0); opacity: 1; }
+  100% { transform: translate(-45px, 52px) scale(0.2); opacity: 0; }
+}
+
+@keyframes miniSparkBurst5 {
+  0%, 65% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  70% { transform: translate(0, 0) scale(1.4); opacity: 1; }
+  85% { transform: translate(0, -48px) scale(1.1); opacity: 1; }
+  100% { transform: translate(0, -72px) scale(0.2); opacity: 0; }
+}
+
+@keyframes miniSparkBurst6 {
+  0%, 65% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  70% { transform: translate(0, 0) scale(1.0); opacity: 1; }
+  85% { transform: translate(42px, 0) scale(1.3); opacity: 1; }
+  100% { transform: translate(65px, 0) scale(0.2); opacity: 0; }
+}
+
+@keyframes miniSparkBurst7 {
+  0%, 65% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  70% { transform: translate(0, 0) scale(1.1); opacity: 1; }
+  85% { transform: translate(0, 38px) scale(1.2); opacity: 1; }
+  100% { transform: translate(0, 62px) scale(0.2); opacity: 0; }
+}
+
+@keyframes miniSparkBurst8 {
+  0%, 65% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  70% { transform: translate(0, 0) scale(1.3); opacity: 1; }
+  85% { transform: translate(-38px, 0) scale(1.0); opacity: 1; }
+  100% { transform: translate(-58px, 0) scale(0.2); opacity: 0; }
+}
+
+/* Enhanced Rocket and Trail Animations */
+.rocket-trail {
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(180deg, transparent 0%, #ffd700 20%, #ff6b35 50%, #fff 100%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: rocketTrail 4s ease-out infinite;
+}
+
+.multi-stage.skyshot-rocket {
+  background: radial-gradient(circle, #fff 0%, #ffd700 30%, #ff6b35 70%, #ff4444 100%);
+  box-shadow: 0 0 15px #ffd700, 0 30px 20px #ff6b35;
+  animation: multiStageRocket 5s ease-out infinite;
+}
+
+.explosion-tertiary {
+  position: absolute;
+  bottom: 65vh;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  animation: tertiaryExplosionTiming 15s ease-out infinite;
+}
+
+.tiny-spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, #fff 0%, #ffd700 100%);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 4px currentColor;
+}
+
+/* Extended spark burst animations */
+.sparkBurstExtended1 { animation: sparkBurstExtended1 15s ease-out infinite; }
+.sparkBurstExtended2 { animation: sparkBurstExtended2 15s ease-out infinite; }
+.sparkBurstExtended3 { animation: sparkBurstExtended3 15s ease-out infinite; }
+.sparkBurstExtended4 { animation: sparkBurstExtended4 15s ease-out infinite; }
+
+.miniSparkExtended1 { animation: miniSparkExtended1 15s ease-out infinite; }
+.miniSparkExtended2 { animation: miniSparkExtended2 15s ease-out infinite; }
+.miniSparkExtended3 { animation: miniSparkExtended3 15s ease-out infinite; }
+.miniSparkExtended4 { animation: miniSparkExtended4 15s ease-out infinite; }
+
+.tiny-1 { animation: tinySparkBurst1 15s ease-out infinite; }
+.tiny-2 { animation: tinySparkBurst2 15s ease-out infinite; }
+.tiny-3 { animation: tinySparkBurst3 15s ease-out infinite; }
+.tiny-4 { animation: tinySparkBurst4 15s ease-out infinite; }
+.tiny-5 { animation: tinySparkBurst5 15s ease-out infinite; }
+.tiny-6 { animation: tinySparkBurst6 15s ease-out infinite; }
+
+/* New color variations */
+.color-white .spark {
+  background: radial-gradient(circle, #fff 0%, #f0f0f0 50%, transparent 100%);
+}
+.color-white .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #e0e0e0 50%, transparent 100%);
+}
+
+.color-silver .spark {
+  background: radial-gradient(circle, #fff 0%, #c0c0c0 50%, transparent 100%);
+}
+.color-silver .mini-spark {
+  background: radial-gradient(circle, #fff 0%, #b0b0b0 50%, transparent 100%);
+}
+
+@keyframes rocketTrail {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  20% {
+    height: 20px;
+    opacity: 0.8;
+  }
+  80% {
+    height: 200px;
+    opacity: 0.6;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes multiStageRocket {
+  0% {
+    bottom: 0;
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 15px #ffd700, 0 30px 20px #ff6b35;
+  }
+  30% {
+    bottom: 30vh;
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 25px #ff6b35, 0 40px 30px #ff4444;
+  }
+  60% {
+    bottom: 65vh;
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0 0 35px #ff4444, 0 50px 40px #fff;
+  }
+  80% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  100% {
+    bottom: 65vh;
+    opacity: 0;
+  }
+}
+
+@keyframes tertiaryExplosionTiming {
+  0%, 75% { opacity: 0; }
+  80% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurstExtended1 {
+  0%, 50% { transform: translate(0, 0) scale(0.3) rotate(0deg); opacity: 0; }
+  55% { transform: translate(0, 0) scale(1.5) rotate(90deg); opacity: 1; }
+  75% { transform: translate(-85px, -125px) rotate(270deg); opacity: 1; }
+  90% { transform: translate(-135px, -185px) scale(0.2) rotate(450deg); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurstExtended2 {
+  0%, 50% { transform: translate(0, 0) scale(0.3) rotate(0deg); opacity: 0; }
+  55% { transform: translate(0, 0) scale(1.8) rotate(-45deg); opacity: 1; }
+  75% { transform: translate(125px, -65px) rotate(-225deg); opacity: 1; }
+  90% { transform: translate(185px, -105px) scale(0.1) rotate(-405deg); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurstExtended3 {
+  0%, 50% { transform: translate(0, 0) scale(0.4) rotate(0deg); opacity: 0; }
+  55% { transform: translate(0, 0) scale(1.6) rotate(135deg); opacity: 1; }
+  75% { transform: translate(95px, 75px) rotate(315deg); opacity: 1; }
+  90% { transform: translate(145px, 115px) scale(0.3) rotate(495deg); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes sparkBurstExtended4 {
+  0%, 50% { transform: translate(0, 0) scale(0.2) rotate(0deg); opacity: 0; }
+  55% { transform: translate(0, 0) scale(2.0) rotate(-135deg); opacity: 1; }
+  75% { transform: translate(-105px, 85px) rotate(-315deg); opacity: 1; }
+  90% { transform: translate(-155px, 125px) scale(0.15) rotate(-495deg); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes miniSparkExtended1 {
+  0%, 70% { transform: translate(0, 0) scale(0.2) rotate(0deg); opacity: 0; }
+  75% { transform: translate(0, 0) scale(1.3) rotate(60deg); opacity: 1; }
+  90% { transform: translate(-55px, -45px) scale(1.1) rotate(240deg); opacity: 1; }
+  100% { transform: translate(-85px, -75px) scale(0.1) rotate(420deg); opacity: 0; }
+}
+
+@keyframes miniSparkExtended2 {
+  0%, 70% { transform: translate(0, 0) scale(0.3) rotate(0deg); opacity: 0; }
+  75% { transform: translate(0, 0) scale(1.5) rotate(-30deg); opacity: 1; }
+  90% { transform: translate(65px, -35px) scale(0.9) rotate(-150deg); opacity: 1; }
+  100% { transform: translate(95px, -65px) scale(0.05) rotate(-330deg); opacity: 0; }
+}
+
+@keyframes miniSparkExtended3 {
+  0%, 70% { transform: translate(0, 0) scale(0.4) rotate(0deg); opacity: 0; }
+  75% { transform: translate(0, 0) scale(1.2) rotate(120deg); opacity: 1; }
+  90% { transform: translate(45px, 55px) scale(1.2) rotate(300deg); opacity: 1; }
+  100% { transform: translate(75px, 85px) scale(0.2) rotate(480deg); opacity: 0; }
+}
+
+@keyframes miniSparkExtended4 {
+  0%, 70% { transform: translate(0, 0) scale(0.25) rotate(0deg); opacity: 0; }
+  75% { transform: translate(0, 0) scale(1.4) rotate(-90deg); opacity: 1; }
+  90% { transform: translate(-45px, 45px) scale(1.0) rotate(-270deg); opacity: 1; }
+  100% { transform: translate(-75px, 75px) scale(0.1) rotate(-450deg); opacity: 0; }
+}
+
+@keyframes tinySparkBurst1 {
+  0%, 75% { transform: translate(0, 0) scale(0.1); opacity: 0; }
+  80% { transform: translate(0, 0) scale(1.5); opacity: 1; }
+  95% { transform: translate(-25px, -35px) scale(0.8); opacity: 1; }
+  100% { transform: translate(-45px, -55px) scale(0.05); opacity: 0; }
+}
+
+@keyframes tinySparkBurst2 {
+  0%, 75% { transform: translate(0, 0) scale(0.1); opacity: 0; }
+  80% { transform: translate(0, 0) scale(1.3); opacity: 1; }
+  95% { transform: translate(35px, -25px) scale(0.9); opacity: 1; }
+  100% { transform: translate(55px, -45px) scale(0.05); opacity: 0; }
+}
+
+@keyframes tinySparkBurst3 {
+  0%, 75% { transform: translate(0, 0) scale(0.1); opacity: 0; }
+  80% { transform: translate(0, 0) scale(1.4); opacity: 1; }
+  95% { transform: translate(25px, 35px) scale(1.0); opacity: 1; }
+  100% { transform: translate(45px, 55px) scale(0.05); opacity: 0; }
+}
+
+@keyframes tinySparkBurst4 {
+  0%, 75% { transform: translate(0, 0) scale(0.1); opacity: 0; }
+  80% { transform: translate(0, 0) scale(1.6); opacity: 1; }
+  95% { transform: translate(-35px, 25px) scale(0.7); opacity: 1; }
+  100% { transform: translate(-55px, 45px) scale(0.05); opacity: 0; }
+}
+
+@keyframes tinySparkBurst5 {
+  0%, 75% { transform: translate(0, 0) scale(0.1); opacity: 0; }
+  80% { transform: translate(0, 0) scale(1.2); opacity: 1; }
+  95% { transform: translate(0, -45px) scale(1.1); opacity: 1; }
+  100% { transform: translate(0, -65px) scale(0.05); opacity: 0; }
+}
+
+@keyframes tinySparkBurst6 {
+  0%, 75% { transform: translate(0, 0) scale(0.1); opacity: 0; }
+  80% { transform: translate(0, 0) scale(1.7); opacity: 1; }
+  95% { transform: translate(0, 45px) scale(0.6); opacity: 1; }
+  100% { transform: translate(0, 65px) scale(0.05); opacity: 0; }
+}

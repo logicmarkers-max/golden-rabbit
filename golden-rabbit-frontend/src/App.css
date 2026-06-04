@@ -1,0 +1,47 @@
+.App {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Improved section spacing */
+.section-spacing {
+  padding: 2.5rem 0;
+}
+
+.section-spacing + .section-spacing {
+  padding-top: 1rem;
+}
+
+.section-spacing:first-child {
+  padding-top: 0.5rem;
+}
+
+.section-spacing:last-child {
+  padding-bottom: 2rem;
+}
+
+/* Container utility for consistent max-width and padding */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .section-spacing {
+    padding: 1.5rem 0;
+  }
+  
+  .section-spacing:first-child {
+    padding-top: 0.25rem;
+  }
+}

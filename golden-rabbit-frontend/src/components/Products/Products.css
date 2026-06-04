@@ -1,0 +1,151 @@
+.products {
+  padding: 2rem 0;
+  background: transparent;
+  width: 100%;
+}
+
+.products-status {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.products-status--error {
+  color: #ff6b6b;
+}
+
+.products-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  display: block;
+  width: 100%;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+}
+
+.filter-tab {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.55rem 1.15rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.filter-tab:hover {
+  border-color: rgba(255, 215, 0, 0.45);
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.08);
+}
+
+.filter-tab.active {
+  background: linear-gradient(135deg, #ffd700, #ff6b35);
+  border-color: transparent;
+  color: #1a1a2e;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(255, 215, 0, 0.25);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 0 auto;
+  padding: 0 0 2rem;
+  align-items: stretch;
+}
+
+.products-grid > div {
+  display: flex;
+  min-height: 100%;
+  animation: productCardFadeIn 0.45s ease-out forwards;
+  animation-delay: var(--card-delay, 0s);
+  opacity: 0;
+}
+
+@keyframes productCardFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .filter-tabs {
+    gap: 0.8rem;
+    padding: 0 1.5rem;
+    max-width: 100%;
+  }
+  
+  .filter-tab {
+    padding: 0.6rem 1rem;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .products {
+    padding: 2rem 0;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+  }
+  
+  .filter-tabs {
+    gap: 0.75rem;
+    padding: 0 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  
+  .filter-tab {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    min-width: auto;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}

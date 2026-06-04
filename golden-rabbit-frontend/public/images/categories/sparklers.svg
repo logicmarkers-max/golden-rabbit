@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Sparklers">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1d3a"/>
+      <stop offset="50%" stop-color="#2c2f5a"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <text x="200" y="220" text-anchor="middle" font-size="108">&#10024;</text>
+  <text x="200" y="320" text-anchor="middle" fill="#ffd700" font-family="system-ui,sans-serif" font-size="22" font-weight="600" letter-spacing="2">SPARKLERS</text>
+</svg>

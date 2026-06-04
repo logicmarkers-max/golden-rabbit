@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="img" aria-label="Product">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1d3a"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#bg)"/>
+  <text x="200" y="145" text-anchor="middle" font-size="72">🎆</text>
+  <text x="200" y="230" text-anchor="middle" fill="#ffd700" font-family="system-ui,sans-serif" font-size="16" opacity="0.8">Golden Rabbit</text>
+</svg>

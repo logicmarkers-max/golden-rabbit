@@ -1,0 +1,281 @@
+.categories {
+  padding: 2rem 0;
+  background: transparent;
+  width: 100%;
+  position: relative; /* allow overlay positioning */
+}
+
+.categories-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.categories-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.categories-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+  color: #ffd700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  position: relative;
+}
+
+.nav-button:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.6);
+  transform: scale(1.05);
+}
+
+.nav-button:active {
+  transform: scale(0.95);
+}
+
+/* Removed unused styles */
+
+.categories-scroll-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Generic overlay used for left/right nav buttons */
+.nav-overlay {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* vertically center by default */
+  display: flex;
+  z-index: 40;
+  pointer-events: none; /* disabled when hidden */
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.nav-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.nav-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.96);
+}
+
+/* Position left and right overlays */
+.nav-overlay-left { left: 1.25rem; }
+.nav-overlay-right { right: 1.25rem; }
+
+/* Transparent circular button style (override minor bits of .nav-button) */
+.nav-overlay .nav-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  color: #ffd700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.12s ease, border-color 0.12s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.nav-overlay .nav-button:hover,
+.nav-overlay .nav-button:focus {
+  background: rgba(255, 215, 0, 0.07);
+  border-color: rgba(255, 215, 0, 0.35);
+  transform: scale(1.04);
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .nav-overlay {
+    top: auto;
+    bottom: 1rem;
+    transform: none;
+  }
+
+  .nav-overlay-left { left: 1rem; }
+  .nav-overlay-right { right: 1rem; }
+
+  .nav-overlay .nav-button { width: 40px; height: 40px; }
+
+  /* On mobile keep them visible and reachable */
+  .nav-overlay.visible { opacity: 1; pointer-events: auto; }
+
+  @media (max-width: 420px) {
+    .nav-overlay-left { display: none; }
+  }
+}
+
+.categories-grid {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.categories-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.category-card {
+  position: relative;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  min-width: 280px;
+  flex-shrink: 0;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.category-card:hover .category-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.category-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.1);
+}
+
+.category-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.category-count {
+  color: #ffd700;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.category-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  border-radius: 20px;
+  background: rgba(10, 12, 28, 0.55);
+}
+
+.category-btn {
+  background: linear-gradient(45deg, #ffd700, #ff6b35);
+  color: #000;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.category-btn:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .categories {
+    padding: 2rem 0;
+  }
+  
+  .section-header {
+    padding: 0 1rem;
+  }
+  
+  .categories-grid {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .category-card {
+    padding: 1.5rem;
+    min-width: 250px;
+  }
+  
+  .nav-button {
+    width: 40px;
+    height: 40px;
+  }
+}
