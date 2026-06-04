@@ -89,6 +89,7 @@ const Categories = () => {
     );
   }
 
+  
   return (
     <section className="categories" id="categories">
       <div className="categories-scroll-container">
