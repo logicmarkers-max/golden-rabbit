@@ -81,15 +81,7 @@ const Categories = () => {
     return icons[slug] || '🎪';
   };
 
-  if (loading) {
-    return (
-      <section className="categories" id="categories">
-        <div className="loading-message">Loading categories...</div>
-      </section>
-    );
-  }
 
-  
   return (
     <section className="categories" id="categories">
       <div className="categories-scroll-container">
