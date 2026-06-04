@@ -91,11 +91,7 @@ const Categories = () => {
 
   return (
     <section className="categories" id="categories">
-      <div className="categories-header">
-        <h2 className="categories-title">Shop by Category</h2>
-        <p className="categories-subtitle">Tap a category to explore curated crackers for every celebration</p>
-      </div>
-      
+     
       <div className="categories-scroll-container">
         <div className="categories-grid" ref={scrollContainerRef} tabIndex={0}>
           {categories.map((category, index) => {
